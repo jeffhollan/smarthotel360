@@ -14,6 +14,13 @@ server.listen(8080, function() {
 //**
 
 function respond(req, res, next) {
-  res.send('response');
-  next();
+  axios.get('http://smarthotel360.com/api/registration')
+    .then(function (r) {
+      res.send(r.status);
+      next();
+    })
+    .catch(function (err) {
+      console.log(err);
+    });
+
 }
